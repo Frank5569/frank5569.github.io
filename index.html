@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Feng Liu Technical Portfolio</title>
+<meta name="description" content="Technical portfolio of Feng Liu, senior technologist in information storage hardware engineering for hyperscale data centers: 76 granted patents, 20+ journal papers, 23+ conference talks, and books on High Bandwidth Flash (HBF) and ensemble machine learning.">
+<meta name="author" content="Feng Liu">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Feng Liu – Technical Portfolio">
+<meta property="og:description" content="Technical portfolio of Feng Liu, senior technologist in information storage hardware engineering for hyperscale data centers: 76 granted patents, 20+ journal papers, 23+ conference talks, and books on High Bandwidth Flash (HBF) and ensemble machine learning.">
+<meta property="og:image" content="headshot.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (max 1080px) with a sticky section nav; the hero pairs the portrait with a
+   "written track" strip that encodes the name as magnetic bits. Lists are quiet rows, not cards. */
+:root{
+  --bg:#f3f5f7; --surface:#ffffff; --ink:#14202b; --muted:#566573; --line:#d8dee4;
+  --accent:#1d6a86; --accent-soft:#e3eff4; --bit-a:#1d6a86; --bit-b:#c9d6de; --ongoing:#2f7d4f; --ongoing-soft:#e3f2e8;
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f151b; --surface:#151d25; --ink:#e5eaef; --muted:#9aa8b5; --line:#26323d;
+  --accent:#62b4d0; --accent-soft:#16303b; --bit-a:#62b4d0; --bit-b:#25343f; --ongoing:#6cc792; --ongoing-soft:#173326; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0f151b; --surface:#151d25; --ink:#e5eaef; --muted:#9aa8b5; --line:#26323d;
+  --accent:#62b4d0; --accent-soft:#16303b; --bit-a:#62b4d0; --bit-b:#25343f; --ongoing:#6cc792; --ongoing-soft:#173326; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h2{font-size:clamp(1.5rem,1.2rem + 1.2vw,2rem);font-weight:700;letter-spacing:-.01em}
+.eyebrow{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+/* nav */
+nav.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;gap:20px;padding-block:10px;overflow-x:auto;scrollbar-width:none}
+nav.top .wrap::-webkit-scrollbar{display:none}
+nav.top .brand{font-family:var(--f-display);font-weight:700;white-space:nowrap;margin-right:auto;color:var(--ink);text-decoration:none}
+nav.top a.l{font-size:.9rem;color:var(--muted);text-decoration:none;white-space:nowrap}
+nav.top a.l:hover{color:var(--accent)}
+
+/* hero */
+header.hero{background:var(--surface);border-bottom:1px solid var(--line)}
+header.hero .wrap{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(24px,4vw,56px);padding-block:clamp(32px,5vw,64px);align-items:center}
+.portrait{margin:0;width:100%;max-width:260px;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:var(--bit-b)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.hero h1{font-size:clamp(2.4rem,1.8rem + 3vw,4rem);font-weight:800;letter-spacing:-.02em}
+.role{font-family:var(--f-display);font-weight:600;font-size:clamp(1.1rem,1rem + .5vw,1.35rem);color:var(--accent);margin-top:6px}
+.bio{max-width:62ch;color:var(--muted);margin:16px 0 0}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 0}
+.links a{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid var(--line);border-radius:6px;font-size:.9rem;font-weight:600;text-decoration:none;color:var(--accent);background:var(--surface)}
+.links a:hover{border-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:14px 12px 14px 0}
+.stat + .stat{padding-left:16px;border-left:1px solid var(--line)}
+.stat b{display:block;font-family:var(--f-display);font-size:clamp(1.6rem,1.3rem + 1.2vw,2.3rem);font-weight:700;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat span{font-size:.85rem;color:var(--muted)}
+.track{margin-top:22px}
+.track svg{display:block;width:100%;height:18px}
+.track figcaption{font-family:var(--f-mono);font-size:.72rem;color:var(--muted);margin-top:6px}
+
+/* sections */
+section{padding-block:clamp(40px,6vw,72px);border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+.sec-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;margin-bottom:24px}
+.sec-head p{margin:6px 0 0;color:var(--muted);max-width:62ch}
+
+.feature{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:24px;min-width:0}
+.panel h3{font-size:1.3rem;font-weight:700;margin-top:10px}
+.panel p{color:var(--muted);margin:10px 0 0}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.chip.live{background:var(--ongoing-soft);color:var(--ongoing)}
+.chip.live::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+ul.scope{margin:14px 0 0;padding-left:18px;color:var(--muted)}
+ul.scope li{margin:4px 0}
+.todo{display:block;margin-top:14px;font-size:.85rem;font-style:italic;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+
+.book{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(24px,4vw,56px);align-items:start}
+.book-side{border-top:3px solid var(--accent);padding-top:16px}
+.tagline{font-family:var(--f-display);font-weight:700;font-size:1.35rem;line-height:1.25;margin:0;text-wrap:balance}
+.book-side dl.meta{grid-template-columns:minmax(0,1fr)}
+.cover{margin:0 0 14px;max-width:220px;aspect-ratio:5/8;border-radius:4px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.18);background:#14304a}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.book-body ul.scope{margin-top:16px}
+.book-body{max-width:68ch}
+.btn{display:inline-flex;align-items:center;gap:6px;margin-top:18px;padding:9px 14px;border-radius:6px;background:var(--accent);color:var(--surface);font-weight:600;font-size:.92rem;text-decoration:none}
+.btn:hover{filter:brightness(1.08)}
+.lede{font-size:1.08rem;margin:0}
+ol.parts{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line)}
+ol.parts li{display:grid;grid-template-columns:4.5rem minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--line);color:var(--muted)}
+ol.parts b{color:var(--ink);font-weight:600}
+.pn{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding-top:3px}
+.closing{color:var(--muted);margin:16px 0 0}
+@media (max-width:760px){ .book{grid-template-columns:minmax(0,1fr)} }
+dl.meta{display:grid;grid-template-columns:repeat(3,minmax(0,auto));justify-content:start;gap:8px 28px;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+dl.meta dt{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+dl.meta dd{margin:2px 0 0;font-family:var(--f-mono);font-size:.9rem;font-variant-numeric:tabular-nums}
+@media (max-width:420px){ dl.meta{grid-template-columns:minmax(0,1fr)} }
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{border:1px solid var(--line);background:var(--surface);border-radius:4px;padding:6px 10px;font-size:.9rem}
+.tags span.key,.tags a.key{border:1px solid var(--accent);background:var(--surface);border-radius:4px;padding:6px 10px;font-size:.9rem;color:var(--accent);font-weight:600;text-decoration:none}
+.tags a.key:hover{background:var(--accent-soft)}
+
+/* patents */
+.juris{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:24px}
+.juris div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px}
+.juris b{font-family:var(--f-display);font-size:2rem;font-weight:700;font-variant-numeric:tabular-nums;display:block;line-height:1.1}
+.juris span{color:var(--muted);font-size:.9rem}
+.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--surface)}
+.seg button{font:inherit;font-size:.88rem;border:0;background:none;color:var(--muted);padding:7px 12px;cursor:pointer}
+.seg button + button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--surface)}
+.search{flex:1 1 220px;min-width:0}
+.search input{width:100%;font:inherit;font-size:.92rem;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink)}
+.count{font-size:.85rem;color:var(--muted);margin:0 0 6px}
+ol.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+ol.rows li{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:4px 18px;padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.no{font-family:var(--f-mono);font-size:.86rem;color:var(--accent);white-space:nowrap}
+.ttl{min-width:0}
+.ttl small{display:block;color:var(--muted);font-size:.82rem;margin-top:2px}
+.dt{font-family:var(--f-mono);font-size:.82rem;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.note{font-size:.88rem;color:var(--muted);margin-top:16px;max-width:75ch}
+
+/* papers + talks */
+ol.pubs{margin:0;padding:0;list-style:none;counter-reset:p;border-top:1px solid var(--line)}
+ol.pubs li{counter-increment:p;display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:0 12px;padding:14px 0;border-bottom:1px solid var(--line)}
+ol.pubs li::before{content:counter(p);font-family:var(--f-mono);font-size:.82rem;color:var(--muted);padding-top:2px;font-variant-numeric:tabular-nums}
+.pt{font-weight:500}
+.pa{font-size:.9rem;color:var(--muted);margin-top:2px}
+.pa strong{color:var(--ink);font-weight:600}
+.pv{font-size:.9rem;margin-top:2px}
+.pv .code{font-family:var(--f-mono);font-size:.78rem;color:var(--accent);margin-right:8px}
+.two{display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+
+footer{padding-block:32px;color:var(--muted);font-size:.85rem}
+
+@media (max-width:760px){
+  header.hero .wrap{grid-template-columns:minmax(0,1fr)}
+  .portrait{max-width:200px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(3){padding-left:0;border-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--line)}
+  .feature{grid-template-columns:minmax(0,1fr)}
+  .juris{grid-template-columns:minmax(0,1fr)}
+  ol.rows li{grid-template-columns:minmax(0,1fr) auto}
+  ol.rows .ttl{grid-column:1 / -1;grid-row:2}
+}
+@media (prefers-reduced-motion:no-preference){ .track rect{transition:opacity .3s} }
+</style>
+
+</head>
+<body>
+<nav class="top" aria-label="Sections"><div class="wrap">
+  <a class="brand" href="#top">Feng Liu</a>
+  <a class="l" href="#research">HBF book</a>
+  <a class="l" href="#book">ML book</a>
+  <a class="l" href="#expertise">Expertise</a>
+  <a class="l" href="#patents">Patents</a>
+  <a class="l" href="#papers">Papers</a>
+  <a class="l" href="#talks">Talks</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <figure class="portrait"><img src="headshot.jpg" alt="Portrait of Feng Liu in a grey suit and tie"></figure>
+  <div style="min-width:0">
+    <div class="eyebrow">Technical portfolio</div>
+    <h1>Feng Liu</h1>
+    <div class="role">Senior Technologist · Information storage hardware engineering for hyperscale data centers</div>
+    <p class="bio">Feng Liu is a senior technologist in information storage hardware engineering for hyperscale data centers, with expertise in design, reliability, and data science and machine learning for volume manufacturing. Feng holds more than 80 patents and applications and has published more than 20 papers.</p>
+    <p class="links"><a href="https://www.linkedin.com/in/feng-liu-4135a910/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a><a href="https://www.amazon.com/dp/B0HPFVQM4W" target="_blank" rel="noopener">Books on Amazon <span aria-hidden="true">↗</span></a></p>
+    <div class="stats" aria-label="Portfolio at a glance">
+      <div class="stat"><b>80+</b><span>patents and applications</span></div>
+      <div class="stat"><b>20+</b><span>journal papers</span></div>
+      <div class="stat"><b>23+</b><span>conference talks</span></div>
+      <div class="stat"><b>2</b><span>books</span></div>
+    </div>
+    <figure class="track" style="margin:0">
+      <svg id="track" viewBox="0 0 640 18" preserveAspectRatio="none" role="img" aria-label="The name FENG LIU written as a row of magnetic bits"></svg>
+      <figcaption>F E N G · L I U, written as bits on a recording track</figcaption>
+    </figure>
+  </div>
+</div></header>
+
+<main>
+<section id="research"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">New book · 2026</div><h2>High Bandwidth Flash (HBF): Technology and Market Assessment</h2></div></div>
+  <div class="book">
+    <aside class="book-side">
+      <figure class="cover"><img src="hbf-cover.jpg" alt="Cover of High Bandwidth Flash (HBF): Technology and Market Assessment by Feng Liu, showing a stack of NAND dies beside an accelerator"></figure>
+      <span class="chip live">In review on Amazon · available soon</span>
+      <dl class="meta">
+        <div><dt>Author</dt><dd>Feng Liu</dd></div>
+        <div><dt>Edition</dt><dd>Version 3.0, November 2026</dd></div>
+        <div><dt>Paperback ISBN</dt><dd>9798145676891</dd></div>
+        <div><dt>Format</dt><dd>Paperback, 8.5 × 11 in, 145 pp, full colour; Kindle</dd></div>
+      </dl>
+    </aside>
+    <div class="book-body">
+      <p class="tagline">The memory tier between HBM and SSD, explained from device physics to market impact</p>
+      <p class="lede" style="margin-top:14px">High Bandwidth Flash stacks 3D NAND dies on a logic base die and places them beside an AI accelerator, promising HBM-class read bandwidth with roughly ten times the capacity. Sandisk and SK hynix published the first open HBF specification through the Open Compute Project in 2026, and the first devices are expected around 2027. This book is a quantitative, independent assessment of what HBF can and cannot do, and what it means for AI inference and the memory industry.</p>
+      <ul class="scope">
+        <li>How HBF reaches terabytes per second through plane-level parallelism, and what limits it</li>
+        <li>Read disturb, retention, endurance, ECC and reliability compared with conventional 3D NAND</li>
+        <li>Why large-model decode inference fits HBF while training does not, and which parts of the KV cache can move to flash</li>
+        <li>Stack fabrication, TSVs, wafer bonding and yield; the OCP HBF specification and four ways to attach HBF to an accelerator</li>
+        <li>A disaggregated inference cost model: sweep time, accelerator count and cost per token</li>
+        <li>Market impact, adoption and case studies of Sandisk, SK hynix, Samsung, Micron, Kioxia, YMTC, Huawei and CXMT</li>
+        <li>A timeline, a risk register and an outlook for AI memory and inference once HBF ships in volume</li>
+      </ul>
+      <p class="closing">Extensive derivations and analytical calculations, with references to published papers and patents. Written for memory and storage engineers, system and accelerator architects, researchers, and technology and market analysts.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="book"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Published book · 2026</div><h2>Ensemble Machine Learning for Semiconductor Manufacturing and AI Data Centers</h2></div></div>
+  <div class="book">
+    <aside class="book-side">
+      <p class="tagline">Tree ensembles for the fab and the fleet</p>
+      <dl class="meta">
+        <div><dt>Author</dt><dd>Feng Liu</dd></div>
+        <div><dt>Published</dt><dd>2026</dd></div>
+        <div><dt>ISBN</dt><dd>9798165741456</dd></div>
+      </dl>
+      <a class="btn" href="https://www.amazon.com/dp/B0HPFVQM4W" target="_blank" rel="noopener">View on Amazon <span aria-hidden="true">↗</span></a>
+    </aside>
+    <div class="book-body">
+      <p class="lede">Random forests, gradient boosting, XGBoost, LightGBM, CatBoost and stacking are the workhorses of machine learning on industrial tabular data. This book explains how they work, and how to use them where the data are hardest: semiconductor fabs and the storage fleets of AI data centers.</p>
+      <ol class="parts">
+        <li><span class="pn">Part I</span><span><b>The essentials.</b> Why averaging and boosting reduce error, how to combine models, and how to validate, calibrate and monitor them the way they will actually be deployed.</span></li>
+        <li><span class="pn">Part II</span><span><b>Fab data.</b> Hierarchy, drift, few labels and rare fails, and wafer-map defect-pattern recognition.</span></li>
+        <li><span class="pn">Part III</span><span><b>Storage fleets.</b> A paper-by-paper review of the published field studies of HDD and SSD failure prediction, asking which results would survive deployment.</span></li>
+      </ol>
+      <p class="closing">Every chapter ends with a summary, questions for practitioners and annotated references. Written for engineers and data scientists who need models they can trust, explain and maintain.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="expertise"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Areas of work</div><h2>Expertise</h2><p>Drawn from the subjects of the patents, papers and talks below.</p></div></div>
+  <div class="tags">
+    <span class="key">Data storage hardware</span><span class="key">Heat-assisted magnetic recording (HAMR)</span><span class="key">High bandwidth flash (HBF)</span><a class="key" href="#research">Book: High Bandwidth Flash (HBF): Technology and Market Assessment</a>
+    <span class="key">Reliability and lifetime characterization</span><span class="key">Magnetic tunnel junction (MTJ) design and reliability</span>
+    <span class="key">Ensemble machine learning</span><a class="key" href="#book">Book: Ensemble Machine Learning for Semiconductor Manufacturing and AI Data Centers</a><span class="key">AI memory: DRAM, HBM, HBF</span>
+  </div>
+  <div class="tags" style="margin-top:8px">
+    <span>Perpendicular magnetic recording (PMR) writers</span><span>Side and trailing shields</span><span>Microwave-assisted recording (MAMR)</span>
+    <span>Shingled magnetic recording</span><span>TMR and CPP read sensors</span>
+    <span>ESD and electrical overstress</span><span>Magnetic force microscopy</span><span>Micromagnetic modeling</span>
+    <span>Damascene, plating and reactive ion etch processes</span><span>Servo and drive systems</span>
+  </div>
+</div></section>
+
+<section id="patents"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Intellectual property</div><h2>Patents</h2><p>The 76 patents granted with Western Digital, filed in the US, China and Hong Kong, some pending 2025 US applications on HAMR near-field transducer design for reliability and performance.</p></div></div>
+  <div class="juris">
+    <div><b>80</b><span>70 US patents granted, 10 more applications pending</span></div>
+    <div><b>4</b><span>China invention patents granted</span></div>
+    <div><b>2</b><span>Hong Kong patents granted, plus 1 published application</span></div>
+  </div>
+  <div class="controls">
+    <div class="seg" role="group" aria-label="Filter by country">
+      <button type="button" data-c="all" aria-pressed="true">All</button>
+      <button type="button" data-c="US" aria-pressed="false">US</button>
+      <button type="button" data-c="CN" aria-pressed="false">China</button>
+      <button type="button" data-c="HK" aria-pressed="false">Hong Kong</button>
+    </div>
+    <label class="search"><span class="eyebrow" style="position:absolute;left:-9999px">Search patents</span><input id="q" type="search" placeholder="Search titles or numbers, e.g. shield, MAMR, 9,595,273"></label>
+  </div>
+  <p class="count" id="pcount"></p>
+  <ol class="rows" id="plist"></ol>
+  <p class="note">Assignee is Western Digital (Fremont) LLC, Western Digital Technologies, or SanDisk Technologies (formerly part of Western Digital). Also published in the US: US 2014/0175050 A1 and US 2016/0125899 A1. A further 10 US applications were filed but not published, including the 2025 HAMR application listed above.</p>
+</div></section>
+
+<section id="papers"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Peer reviewed</div><h2>Journal papers</h2><p>20+ papers. The 20 most relevant are listed here, mainly in the Journal of Applied Physics and IEEE Transactions on Magnetics.</p></div></div>
+  <ol class="pubs" id="papers-list"></ol>
+</div></section>
+
+<section id="talks"><div class="wrap">
+  <div class="sec-head"><div><div class="eyebrow">Conferences</div><h2>Conference presentations</h2><p>23+ presentations. The 23 most relevant are listed here, given at INTERMAG, MMM, TMRC and the International Perpendicular Magnetic Recording Conference.</p></div></div>
+  <ol class="pubs" id="talks-list"></ol>
+</div></section>
+</main>
+
+<footer><div class="wrap"><a href="https://www.linkedin.com/in/feng-liu-4135a910/" target="_blank" rel="noopener">Feng Liu on LinkedIn</a> · © 2026 Feng Liu. Patent records from Google Patents and EPO Espacenet.</div></footer>
+
+<script>
+const DATA = {"patents": [{"c": "US", "no": "US 8,077,435", "t": "Current perpendicular-to-plane read sensor with back shield", "d": "2011-12-13", "a": ""}, {"c": "US", "no": "US 8,116,043", "t": "Method and system for providing a magnetic transducer having an improved read sensor synthetic antiferromagnet", "d": "2012-02-14", "a": ""}, {"c": "US", "no": "US 8,194,366", "t": "TMR read head structures with differential stripe heights", "d": "2012-06-05", "a": ""}, {"c": "US", "no": "US 8,203,800", "t": "Servo design in data storage media", "d": "2012-06-19", "a": ""}, {"c": "US", "no": "US 8,227,023", "t": "Method and system for fabricating magnetic transducers with improved pinning", "d": "2012-07-24", "a": ""}, {"c": "US", "no": "US 8,400,731", "t": "Write head with variable side shield gaps", "d": "2013-03-19", "a": ""}, {"c": "US", "no": "US 8,405,930", "t": "Method and system for providing a transducer having dual, ABS recessed auxiliary poles on opposite sides of a main pole with non-magnetic spacer adjoining back portion of main pole", "d": "2013-03-26", "a": ""}, {"c": "US", "no": "US 8,441,756", "t": "Method and system for providing an antiferromagnetically coupled writer", "d": "2013-05-14", "a": ""}, {"c": "US", "no": "US 8,451,563", "t": "Method for providing a side shield for a magnetic recording transducer using an air bridge", "d": "2013-05-28", "a": ""}, {"c": "US", "no": "US 8,520,336", "t": "Magnetic recording head with nano scale pole tip bulge", "d": "2013-08-27", "a": ""}, {"c": "US", "no": "US 8,520,337", "t": "Perpendicular magnetic recording writer pole with leading and trailing bevel side wall angles at air bearing surface", "d": "2013-08-27", "a": ""}, {"c": "US", "no": "US 8,582,238", "t": "Systems and methods for providing perpendicular magnetic writers having gradient magnetic moment side shields", "d": "2013-11-12", "a": ""}, {"c": "US", "no": "US 8,582,241", "t": "Method and system for providing a magnetic transducer having a high moment bilayer magnetic seed layer for a trailing shield", "d": "2013-11-12", "a": ""}, {"c": "US", "no": "US 8,599,520", "t": "Method and system for providing a read transducer having an adaptive read sensor track width", "d": "2013-12-03", "a": ""}, {"c": "US", "no": "US 8,628,672", "t": "Process for manufacturing a perpendicular magnetic recording writer pole with nonmagnetic bevel", "d": "2014-01-14", "a": ""}, {"c": "US", "no": "US 8,653,824", "t": "Delta temperature test method and system", "d": "2014-02-18", "a": ""}, {"c": "US", "no": "US 8,705,205", "t": "Magnetic recording head having a dual sidewall angle", "d": "2014-04-22", "a": ""}, {"c": "US", "no": "US 8,724,259", "t": "Conformal high moment side shield seed layer for perpendicular magnetic recording writer", "d": "2014-05-13", "a": ""}, {"c": "US", "no": "US 8,760,807", "t": "Method for providing a wraparound shield for a magnetic recording transducer using a damascene process", "d": "2014-06-24", "a": ""}, {"c": "US", "no": "US 8,760,819", "t": "Magnetic recording sensor with sputtered antiferromagnetic coupling trilayer between plated ferromagnetic shields", "d": "2014-06-24", "a": ""}, {"c": "US", "no": "US 8,786,983", "t": "Magnetic writer having a low aspect ratio two layer coil", "d": "2014-07-22", "a": ""}, {"c": "US", "no": "US 8,792,208", "t": "Method for providing side shields having non-conformal regions for a magnetic recording transducer", "d": "2014-07-29", "a": ""}, {"c": "US", "no": "US 8,837,081", "t": "Laminated touchdown sensor for hard disk drives", "d": "2014-09-16", "a": ""}, {"c": "US", "no": "US 8,879,207", "t": "Method for providing a side shield for a magnetic recording transducer using an air bridge", "d": "2014-11-04", "a": ""}, {"c": "US", "no": "US 8,917,480", "t": "Magnetic recording transducers having slim shaped additional poles", "d": "2014-12-23", "a": ""}, {"c": "US", "no": "US 8,988,825", "t": "Method for fabricating a magnetic writer having half-side shields", "d": "2015-03-24", "a": ""}, {"c": "US", "no": "US 9,007,728", "t": "Method and system for fabricating magnetic transducers with improved pinning", "d": "2015-04-14", "a": ""}, {"c": "US", "no": "US 9,013,836", "t": "Method and system for providing an antiferromagnetically coupled return pole", "d": "2015-04-21", "a": ""}, {"c": "US", "no": "US 9,053,715", "t": "System for providing a transducer having a split main pole", "d": "2015-06-09", "a": ""}, {"c": "US", "no": "US 9,082,423", "t": "Magnetic recording write transducer having an improved trailing surface profile", "d": "2015-07-14", "a": ""}, {"c": "US", "no": "US 9,111,550", "t": "Write transducer having a magnetic buffer layer spaced between a side shield and a write pole by non-magnetic layers", "d": "2015-08-18", "a": ""}, {"c": "US", "no": "US 9,111,564", "t": "Magnetic recording writer having a main pole with multiple flare angles", "d": "2015-08-18", "a": ""}, {"c": "US", "no": "US 9,123,358", "t": "Conformal high moment side shield seed layer for perpendicular magnetic recording writer", "d": "2015-09-01", "a": ""}, {"c": "US", "no": "US 9,123,359", "t": "Magnetic recording transducer with sputtered antiferromagnetic coupling trilayer between plated ferromagnetic shields and method of fabrication", "d": "2015-09-01", "a": ""}, {"c": "US", "no": "US 9,190,079", "t": "Magnetic write pole having engineered radius of curvature and chisel angle profiles", "d": "2015-11-17", "a": ""}, {"c": "US", "no": "US 9,214,165", "t": "Magnetic writer having a gradient in saturation magnetization of the shields", "d": "2015-12-15", "a": ""}, {"c": "US", "no": "US 9,245,562", "t": "Magnetic recording writer with a composite main pole", "d": "2016-01-26", "a": ""}, {"c": "US", "no": "US 9,251,813", "t": "Method of making a magnetic recording head", "d": "2016-02-02", "a": ""}, {"c": "US", "no": "US 9,263,067", "t": "Process for making PMR writer with constant side wall angle", "d": "2016-02-16", "a": ""}, {"c": "US", "no": "US 9,275,657", "t": "Process for making PMR writer with non-conformal side gaps", "d": "2016-03-01", "a": ""}, {"c": "US", "no": "US 9,280,990", "t": "Method for fabricating a magnetic writer using multiple etches", "d": "2016-03-08", "a": ""}, {"c": "US", "no": "US 9,286,919", "t": "Magnetic writer having a dual side gap", "d": "2016-03-15", "a": ""}, {"c": "US", "no": "US 9,305,583", "t": "Method for fabricating a magnetic writer using multiple etches of damascene materials", "d": "2016-04-05", "a": ""}, {"c": "US", "no": "US 9,343,086", "t": "Magnetic recording write transducer having an improved sidewall angle profile", "d": "2016-05-17", "a": ""}, {"c": "US", "no": "US 9,349,390", "t": "Ultra-short yoke length writer", "d": "2016-05-24", "a": ""}, {"c": "US", "no": "US 9,368,134", "t": "Method and system for providing an antiferromagnetically coupled writer", "d": "2016-06-14", "a": ""}, {"c": "US", "no": "US 9,384,763", "t": "Dual free layer magnetic reader having a rear bias structure including a soft bias layer", "d": "2016-07-05", "a": ""}, {"c": "US", "no": "US 9,431,038", "t": "Method for fabricating a magnetic write pole having an improved sidewall angle profile", "d": "2016-08-30", "a": ""}, {"c": "US", "no": "US 9,443,541", "t": "Magnetic writer having a gradient in saturation magnetization of the shields and return pole", "d": "2016-09-13", "a": ""}, {"c": "US", "no": "US 9,478,236", "t": "Perpendicular magnetic recording write head", "d": "2016-10-25", "a": ""}, {"c": "US", "no": "US 9,478,242", "t": "Magnetic recording apparatus having a recessed additional pole segment", "d": "2016-10-25", "a": ""}, {"c": "US", "no": "US 9,558,763", "t": "Magnetic recording write apparatus having a pole including an assist portion extending in the cross-track direction", "d": "2017-01-31", "a": ""}, {"c": "US", "no": "US 9,576,598", "t": "Magnetic recording write apparatus having a pole and a magnetic separation layer", "d": "2017-02-21", "a": ""}, {"c": "US", "no": "US 9,595,273", "t": "Shingle magnetic writer having nonconformal shields", "d": "2017-03-14", "a": ""}, {"c": "US", "no": "US 9,711,168", "t": "Method for providing a magnetic recording write apparatus by predefining side shields", "d": "2017-07-18", "a": ""}, {"c": "US", "no": "US 9,721,591", "t": "Magnetic recording write apparatus having a pole having an aspect ratio greater than one and an auxiliary pole", "d": "2017-08-01", "a": ""}, {"c": "US", "no": "US 9,741,366", "t": "Method for fabricating a magnetic writer having a gradient in saturation magnetization of the shields", "d": "2017-08-22", "a": ""}, {"c": "US", "no": "US 9,754,611", "t": "Magnetic recording write apparatus having a stepped conformal trailing shield", "d": "2017-09-05", "a": ""}, {"c": "US", "no": "US 9,779,765", "t": "Perpendicular magnetic recording writer having improved performance and wide area track erasure reliability", "d": "2017-10-03", "a": ""}, {"c": "US", "no": "US 9,786,301", "t": "Apparatuses and methods for providing thin shields in a multiple sensor array", "d": "2017-10-10", "a": ""}, {"c": "US", "no": "US 9,799,351", "t": "Short yoke length writer having assist coils", "d": "2017-10-24", "a": ""}, {"c": "US", "no": "US 9,940,951", "t": "PMR writer with non-conformal side gaps", "d": "2018-04-10", "a": ""}, {"c": "US", "no": "US 10,115,416", "t": "Magnetic recording write apparatus having a pole having an aspect ratio greater than one and an auxiliary pole", "d": "2018-10-30", "a": ""}, {"c": "US", "no": "US 10,121,495", "t": "Magnetic recording write apparatus having a stepped conformal trailing shield", "d": "2018-11-06", "a": ""}, {"c": "US", "no": "US 10,460,750", "t": "Plating based pre-defined side shield and application in magnetic head", "d": "2019-10-29", "a": "SanDisk Technologies"}, {"c": "US", "no": "US 10,714,125", "t": "Method of manufacturing a magnetic recording head", "d": "2020-07-14", "a": "SanDisk Technologies"}, {"c": "US", "no": "US 10,741,202", "t": "MAMR writer with low resistance MAMR stack", "d": "2020-08-11", "a": "WD Technologies"}, {"c": "US", "no": "US 11,049,514", "t": "MAMR writer with low resistance MAMR stack", "d": "2021-06-29", "a": "WD Technologies"}, {"c": "US", "no": "US 11,626,129", "t": "Plating based side shield define and application in magnetic head", "d": "2023-04-11", "a": "WD Technologies"}, {"c": "US", "no": "US 11,776,568", "t": "Device lifetime improvement through constant temperature", "d": "2023-10-03", "a": "WD Technologies"}, {"c": "US", "no": "US appl. 2025", "t": "Heat-assisted magnetic recording (HAMR) head near-field transducer design to improve lifetime by minimizing Au vacancy diffusion", "d": "Filed 2025", "st": "Pending US application, not yet published", "app": true}, {"c": "CN", "no": "CN 101826360 B", "t": "Servo design in data storage media", "d": "2014-09-24", "rel": "US 8,203,800"}, {"c": "CN", "no": "CN 102097101 B", "t": "Method and system for providing a magnetic transducer having an improved read sensor", "d": "2014-08-13", "rel": "US 8,116,043"}, {"c": "CN", "no": "CN 104103281 B", "t": "Magnetic recording transducers having slim shaped additional poles", "d": "2017-08-29", "rel": "US 8,917,480"}, {"c": "CN", "no": "CN 106558324 B", "t": "Shingle magnetic writer having nonconformal shields", "d": "2019-04-12", "rel": "US 9,595,273"}, {"c": "HK", "no": "HK 1144726", "t": "Improved servo design in data storage media", "d": "2015-08-14", "rel": "CN 101826360 / US 8,203,800", "st": ""}, {"c": "HK", "no": "HK 1154115", "t": "Method and system for providing a magnetic transducer having an improved read sensor", "d": "2015-02-13", "rel": "CN 102097101 / US 8,116,043", "st": ""}, {"c": "HK", "no": "HK 1202971", "t": "Magnetic recording transducers having slim shaped additional poles", "d": "2015", "rel": "CN 104103281 / US 8,917,480", "st": "Published application"}], "papers": [{"t": "Impact of fluorine based reactive chemistry on structure and properties of high moment magnetic material", "au": "X. Yang, H. Han, **F. Liu**, J. Zhang", "j": "J. Appl. Phys. 115, 17C121 (2014)"}, {"t": "Write field dynamics in the presence of antiferromagnetic coupling of writer pole", "au": "Z. Li, D. Bai, T. Pan, D. Han, **F. Liu**, S. Li", "j": "IEEE Trans. Magn. 49(7) (2013)"}, {"t": "Characteristics of magnetic force microscopy magnetics on high moment perpendicular magnetic recording writers with high coercivity", "au": "**F. Liu**, S. Li, D. Bai, J. Wang, Z. Li, D. Han, T. Pan", "j": "J. Appl. Phys. 111, 07E346 (2012)"}, {"t": "Characteristics of reverse overwrite process in shingled recording scheme at ultra-high track density", "au": "S. Li, H. Mendez, D. Terrill, **F. Liu**, D. Bai, S. Mao", "j": "J. Magn. Magn. Mater. 324(3), 252 (2012)"}, {"t": "Modeling magnetic column intermediate layer of perpendicular magnetic recording", "au": "Z. Li, D. Bai, S. Li, **F. Liu**, S. Mao", "j": "J. Appl. Phys. 111, 07B704 (2012)"}, {"t": "Effect of track asymmetry and curvature on shingle writing scheme", "au": "**F. Liu**, S. Li, D. Bai, H. Mendez, T. Pan, D. Han, S. Mao", "j": "J. Appl. Phys. 109, 07B740 (2011)"}, {"t": "Degaussing PMR writer poles: a micromagnetic modeling study", "au": "D. Bai, Z. Li, T. Pan, P. Luo, S. Li, **F. Liu**, H. Lin, S. Mao", "j": "IEEE Trans. Magn. 47(10), 3407 (2011)"}, {"t": "Evaluation of high data rate performances of PMR components", "au": "S. Li, **F. Liu**, B. Zhang, D. Bai, Z. Li, R. Majumder, E. Lin, C. Elliott, T. Pan, S. Mao", "j": "IEEE Trans. Magn. 47(10), 2996 (2011)"}, {"t": "Reverse overwrite process in shingled recording process at ultrahigh track density", "au": "S. Li, H. Mendez, D. Terrill, **F. Liu**, Z. Jin, Y. Guo, L. Zhong, A. Torabi, S. Mao", "j": "IEEE Trans. Magn. 46(6), 2497 (2010)"}, {"t": "Effect of reactive gas (oxygen/chlorine/fluorine) etching on the magnetic flux of a high moment write pole material", "au": "J. Zhang, **F. Liu**, et al.", "j": "J. Appl. Phys. 107, 09A318 (2010)"}, {"t": "Electrical low frequency random telegraph noise in magnetic tunnel junctions", "au": "**F. Liu**, Y. Ding, R. Kemshetti, K. Davies, P. Rana, S. Mao", "j": "J. Appl. Phys. 105, 07C927 (2009)"}, {"t": "Effects of pinning defects on current-perpendicular-to-plane magnetic recording heads", "au": "L. Chen, **F. Liu**, K. Stoev, S. Li, M. Ho, S. Mao", "j": "J. Appl. Phys. 105, 07B730 (2009)"}, {"t": "Effect of head field gradient on nonlinear transition shift in perpendicular recording", "au": "**F. Liu**, S. Li, H. Mendez, A. Torabi, T. Pan, L. Guan, S. Mao", "j": "IEEE Trans. Magn. 45(10), 3707 (2009)"}, {"t": "Electrical low frequency noise in current-perpendicular-to-plane magnetic tunnel junctions", "au": "**F. Liu**, et al.", "j": "Virtual J. Nanoscale Sci. & Technol. 19(12) (2009)"}, {"t": "Characteristics of electrostatic discharge induced damages on magnetic tunnel junctions", "au": "**F. Liu**, C. Chang, J. Shen, B. Pant", "j": "IEEE Trans. Magn. 42(10) (2006)"}, {"t": "Commercial TMR heads for hard disk drives: characterization and extendibility at 300 Gbit/in²", "au": "S. Mao, Y. Chen, **F. Liu**, et al.", "j": "IEEE Trans. Magn. 42(2), 97–102 (2006)"}, {"t": "Selective oxidation of tunnel barrier metals in magnetic tunnel junctions", "au": "J. Yang, **F. Liu**, et al.", "j": "J. Appl. Phys. 97, 10C918 (2005)"}, {"t": "Thermodynamic evaluation of interface stability between selected metal oxides and Co", "au": "Y. Yang, **F. Liu**, et al.", "j": "Materials Research Society Symposium Bulletin (2004)"}, {"t": "Quantitative analysis of transition curvature by magnetic force microscopy", "au": "**F. Liu**, et al.", "j": "J. Appl. Phys. 91, 6842 (2002)"}, {"t": "Erase band width evaluation by phase coherency", "au": "S. Li, **F. Liu**, et al.", "j": "J. Appl. Phys. 91, 7089 (2002)"}], "talks": [{"code": "EB-06", "t": "Trailing shields in perpendicular magnetic recording writer", "au": "**F. Liu**, Z. Li, D. Bai, T. Pan, S. Yuan", "v": "INTERMAG Europe 2014, Dresden, Germany, May 2014"}, {"code": "ET-01", "t": "Impact of fluorine based reactive chemistry on structure and properties of high moment magnetic material", "au": "X. Yang, H. Han, **F. Liu**, J. Zhang", "v": "58th MMM Conference, Denver, CO, Nov 2013"}, {"code": "HV-03", "t": "Analysis of trailing shield dynamic characteristics for perpendicular magnetic recording writer", "au": "**F. Liu**, Z. Li, D. Bai, S. Li, T. Pan, H. Lin", "v": "12th Joint MMM/INTERMAG Conference, Chicago, IL, Jan 2013"}, {"code": "EB-10", "t": "Reverse overwrite properties for high data rate perpendicular magnetic recording", "au": "**F. Liu**, S. Li, Z. Li, L. Wang, D. Bai, T. Pan, H. Lin", "v": "12th Joint MMM/INTERMAG Conference, Chicago, IL, Jan 2013"}, {"code": "FB-10", "t": "Write field dynamics in the presence of antiferromagnetic coupling of writer pole", "au": "Z. Li, D. Bai, T. Pan, D. Han, **F. Liu**, S. Li", "v": "12th Joint MMM/INTERMAG Conference, Chicago, IL, Jan 2013"}, {"code": "CE-11", "t": "Evaluation of high data rate performance of perpendicular magnetic recording components", "au": "S. Li, **F. Liu**, B. Zhang, D. Bai, L. Wang, Z. Li, R. Majumder, E. Lin, C. Elliott, T. Pan", "v": "INTERMAG 2011, Taipei, Taiwan, Apr 2011"}, {"code": "EE-03", "t": "Degaussing PMR writer poles: a micromagnetic modeling study", "au": "D. Bai, Z. Li, T. Pan, P. Luo, S. Li, **F. Liu**, H. Lin", "v": "INTERMAG 2011, Taipei, Taiwan, Apr 2011"}, {"code": "CD-09", "t": "Characteristics of MFM magnetics on high moment PMR writers with high coercivity probes", "au": "**F. Liu**, S. Li, D. Bai, J. Wang, P. Rana, T. Pan", "v": "INTERMAG 2011, Taipei, Taiwan, Apr 2011"}, {"code": "GH-09", "t": "Effect of track asymmetry and curvature for shingle writing scheme", "au": "**F. Liu**, et al.", "v": "55th MMM Conference, Atlanta, GA, Nov 2010"}, {"code": "DF-12", "t": "Characterization of write pole and shield saturation using magnetic force microscopy", "au": "J. Rantschler, **F. Liu**, et al.", "v": "55th MMM Conference, Atlanta, GA, Nov 2010"}, {"code": "Invited", "t": "Characteristics of reverse overwrite processes in shingled recording scheme at ultra-high density", "au": "S. Li, **F. Liu**, D. Bai, et al.", "v": "9th International Perpendicular Magnetic Recording Conference, Sendai, Japan, May 2010"}, {"code": "DG-02", "t": "Domain walls induced wide area track erasure in perpendicular magnetic recording", "au": "**F. Liu**, et al.", "v": "11th Joint MMM-INTERMAG Conference, Washington, DC, Jan 2010"}, {"code": "BX-07", "t": "Effect of reactive gas (oxygen/chlorine/fluorine) etching on magnetic properties", "au": "J. Zhang, **F. Liu**, et al.", "v": "11th Joint MMM-INTERMAG Conference, Washington, DC, Jan 2010"}, {"code": "BA-08", "t": "Overwrite process in shingle write process in perpendicular recording", "au": "S. Li, **F. Liu**, et al.", "v": "11th Joint MMM-INTERMAG Conference, Washington, DC, Jan 2010"}, {"code": "Invited", "t": "Magnetic noise in synthetic antiferromagnet for current-perpendicular-to-plane magnetic tunnel junctions", "au": "**F. Liu**, et al.", "v": "20th Magnetic Recording Conference (TMRC), Tuscaloosa, AL, Oct 2009"}, {"code": "CT-12", "t": "Nonmagnetic low frequency 1/f and random telegraph noise in current perpendicular to plane magnetic tunnel junctions", "au": "**F. Liu**, et al.", "v": "53rd MMM Conference, Austin, TX, Nov 2008"}, {"code": "BC-06", "t": "Effects of pinning defects on current-perpendicular-to-plane magnetic recording heads", "au": "L. Chen, **F. Liu**, et al.", "v": "53rd MMM Conference, Austin, TX, Nov 2008"}, {"code": "CB-11", "t": "Localized temperature rise and pinning properties on magnetic tunnel junctions", "au": "**F. Liu**, S. Song, L. Chen, M. Ho, P. Rana", "v": "52nd MMM Conference, Tampa, FL, Nov 2007"}, {"code": "DD-06", "t": "Analysis on electrical overstress on magnetic and electrical performance of magnetic tunnel junctions", "au": "**F. Liu**, et al.", "v": "INTERMAG 2006, San Diego, CA, May 2006"}, {"code": "Invited", "t": "Commercial TMR heads for hard disk drives: characterization and extendibility at 300 Gbit/in²", "au": "S. Mao, Y. Chen, **F. Liu**, et al.", "v": "16th Magnetic Recording Conference (TMRC), Stanford, CA, Aug 2005"}, {"code": "HF-15", "t": "Conduction mechanisms of magnetic tunnel junctions with ultrathin barriers", "au": "**F. Liu**, et al.", "v": "49th MMM Conference, Jacksonville, FL, Nov 2004"}, {"code": "—", "t": "Selective oxidation of tunnel barrier metals in magnetic tunnel junctions", "au": "J. Yang, **F. Liu**, et al.", "v": "49th MMM Conference, Jacksonville, FL, Nov 2004"}, {"code": "—", "t": "Writability characterization of transition property with longitudinal recording by magnetic force microscopy", "au": "**F. Liu**, Y. Liu, G. Gray, A. Schultz", "v": "46th MMM Conference, Seattle, WA, Nov 2001"}]};
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const bold = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+const NAMES = {US:'US', CN:'China', HK:'Hong Kong'};
+
+// hero track: FENG LIU as 8-bit ASCII, drawn as magnetised bits
+(function(){
+  const svg = document.getElementById('track');
+  const bits = [...'FENG LIU'].map(ch => ch.charCodeAt(0).toString(2).padStart(8,'0')).join('');
+  const w = 640 / bits.length; let out = '';
+  [...bits].forEach((b,i) => {
+    out += `<rect x="${(i*w).toFixed(2)}" y="0" width="${(w-0.6).toFixed(2)}" height="18" fill="var(${b==='1'?'--bit-a':'--bit-b'})"/>`;
+  });
+  svg.innerHTML = out;
+})();
+
+// patents
+let filter = 'all';
+const plist = document.getElementById('plist'), pcount = document.getElementById('pcount'), q = document.getElementById('q');
+function renderPatents(){
+  const term = q.value.trim().toLowerCase();
+  const items = DATA.patents.filter(p => (filter==='all' || p.c===filter) &&
+    (!term || (p.t + ' ' + p.no + ' ' + (p.rel||'') + ' ' + (p.a||'')).toLowerCase().includes(term)));
+  const apps = items.filter(p => p.app).length, pubs = items.filter(p => p.st === 'Published application').length, pats = items.length - apps - pubs;
+  const parts = [`${pats} ${pats === 1 ? 'patent' : 'patents'}`];
+  if (apps) parts.push(`${apps} pending ${apps === 1 ? 'application' : 'applications'}`);
+  if (pubs) parts.push(`${pubs} published ${pubs === 1 ? 'application' : 'applications'}`);
+  pcount.textContent = (parts.length > 1 ? parts.slice(0, -1).join(', ') + ' and ' + parts.at(-1) : parts[0]) + ' shown';
+  plist.innerHTML = items.map(p => {
+    const extra = [p.a, p.st, p.rel ? 'Related: ' + p.rel : ''].filter(Boolean).join(' · ');
+    return `<li><span class="no">${esc(p.no)}</span><span class="ttl">${esc(p.t)}${extra ? `<small>${esc(extra)}</small>` : ''}</span><span class="dt">${esc(p.d)}</span></li>`;
+  }).join('') || '<li><span class="ttl">No patents match that search.</span></li>';
+}
+document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
+  filter = b.dataset.c;
+  document.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', x === b ? 'true' : 'false'));
+  renderPatents();
+}));
+q.addEventListener('input', renderPatents);
+renderPatents();
+
+document.getElementById('papers-list').innerHTML = DATA.papers.map(p =>
+  `<li><div><div class="pt">${esc(p.t)}</div><div class="pa">${bold(p.au)}</div><div class="pv">${esc(p.j)}</div></div></li>`).join('');
+document.getElementById('talks-list').innerHTML = DATA.talks.map(t =>
+  `<li><div><div class="pt">${esc(t.t)}</div><div class="pa">${bold(t.au)}</div><div class="pv">${t.code && t.code !== '—' ? `<span class="code">${esc(t.code)}</span>` : ''}${esc(t.v)}</div></div></li>`).join('');
+</script>
+
+</body>
+</html>
